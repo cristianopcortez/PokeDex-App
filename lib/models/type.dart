@@ -1,19 +1,20 @@
 class TypeDetail {
-  DamageRelations damageRelations;
-  int id;
-  DamageType moveDamageClass;
-  String name;
+  late DamageRelations damageRelations;
+  late int id;
+  late DamageType moveDamageClass;
+  late String name;
 
-  TypeDetail({this.damageRelations, this.id, this.moveDamageClass, this.name});
+  TypeDetail({required this.damageRelations, required this.id,
+    required this.moveDamageClass, required this.name});
 
   TypeDetail.fromJson(Map<String, dynamic> json) {
-    damageRelations = json['damage_relations'] != null
+    damageRelations = (json['damage_relations'] != null
         ? new DamageRelations.fromJson(json['damage_relations'])
-        : null;
+        : null)!;
     id = json['id'];
-    moveDamageClass = json['move_damage_class'] != null
+    moveDamageClass = (json['move_damage_class'] != null
         ? new DamageType.fromJson(json['move_damage_class'])
-        : null;
+        : null)!;
     name = json['name'];
   }
 
@@ -32,20 +33,20 @@ class TypeDetail {
 }
 
 class DamageRelations {
-  List<DamageType> doubleDamageFrom;
-  List<DamageType> doubleDamageTo;
-  List<DamageType> halfDamageFrom;
-  List<DamageType> halfDamageTo;
-  List<DamageType> noDamageFrom;
-  List<DamageType> noDamageTo;
+  late List<DamageType> doubleDamageFrom;
+  late List<DamageType> doubleDamageTo;
+  late List<DamageType> halfDamageFrom;
+  late List<DamageType> halfDamageTo;
+  late List<DamageType> noDamageFrom;
+  late List<DamageType> noDamageTo;
 
   DamageRelations(
-      {this.doubleDamageFrom,
-      this.doubleDamageTo,
-      this.halfDamageFrom,
-      this.halfDamageTo,
-      this.noDamageFrom,
-      this.noDamageTo});
+      {required this.doubleDamageFrom,
+      required this.doubleDamageTo,
+      required this.halfDamageFrom,
+      required this.halfDamageTo,
+      required this.noDamageFrom,
+      required this.noDamageTo});
 
   DamageRelations.fromJson(Map<String, dynamic> json) {
     if (json['double_damage_from'] != null) {
@@ -116,10 +117,10 @@ class DamageRelations {
 }
 
 class DamageType {
-  String name;
-  String url;
+  late String name;
+  late String url;
 
-  DamageType({this.name, this.url});
+  DamageType({required this.name, required this.url});
 
   DamageType.fromJson(Map<String, dynamic> json) {
     name = json['name'];

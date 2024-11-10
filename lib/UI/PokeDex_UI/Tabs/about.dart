@@ -11,7 +11,7 @@ class AboutTab extends StatelessWidget {
   final Pokemon pokemon;
   final PokemonController pokemonController = Get.find<PokemonController>();
 
-  AboutTab({this.pokemon});
+  AboutTab({required this.pokemon});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class AboutTab extends StatelessWidget {
                                     ),
                                     const SizedBox(width: 5),
                                     Text(
-                                      (pokemon.encounter.gender.malePercent *
+                                      (pokemon.encounter.gender!.malePercent *
                                                   100)
                                               .toString() +
                                           "%",
@@ -56,7 +56,7 @@ class AboutTab extends StatelessWidget {
                                       color: Color(0xFFd68998),
                                     ),
                                     Text(
-                                      (pokemon.encounter.gender.femalePercent *
+                                      (pokemon.encounter.gender!.femalePercent *
                                                   100)
                                               .toString() +
                                           "%",
@@ -72,7 +72,7 @@ class AboutTab extends StatelessWidget {
                     buildAboutInformation("MaxCP", pokemon.maxCp.toString()),
                     const SizedBox(height: 15),
                     buildAboutInformation("Base XP",
-                        pokemonController.pokemonAPI.baseExperience.toString()),
+                        pokemonController.pokemonAPI?.baseExperience.toString() ?? "Unknown"),
                     const SizedBox(height: 15),
                     buildAboutInformation(
                         "Weight", pokemon.weight.toString() + " (kg)"),

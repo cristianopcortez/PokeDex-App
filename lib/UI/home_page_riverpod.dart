@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
-import 'package:my_pokedex/controllers/home_controller.dart';
 import 'package:my_pokedex/Helpers/text_styles.dart';
 import 'package:my_pokedex/UI/list_page.dart';
 import 'package:my_pokedex/widgets/ImageButton.dart';
 import 'package:my_pokedex/routes/routes.dart';
 
-class HomePage extends StatefulWidget {
+class HomePageRiverPod extends ConsumerStatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomePageStateRiverPod createState() => _HomePageStateRiverPod();
 }
 
-class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-// class _HomePageState extends ConsumerState<HomePage> with TickerProviderStateMixin {
+class _HomePageStateRiverPod extends ConsumerState<HomePageRiverPod> with TickerProviderStateMixin {
   late AnimationController animationController;
-  HomeController homeController = Get.put(HomeController());
 
   @override
   void initState() {

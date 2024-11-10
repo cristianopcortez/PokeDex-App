@@ -8,13 +8,13 @@ import 'package:my_pokedex/utitliy/constants.dart';
 
 class MoveDetailSheet extends StatefulWidget {
   final String url;
-  MoveDetailSheet({this.url});
+  MoveDetailSheet({required this.url});
   @override
   _MoveDetailSheetState createState() => _MoveDetailSheetState();
 }
 
 class _MoveDetailSheetState extends State<MoveDetailSheet> {
-  MoveDetail moveDetails;
+  MoveDetail? moveDetails;
   @override
   void initState() {
     getMoveDetails();
@@ -28,8 +28,8 @@ class _MoveDetailSheetState extends State<MoveDetailSheet> {
         maxChildSize: 1,
         expand: false,
         builder: (context, scrollController) {
-          return moveDetails != null
-              ? Stack(
+          if (moveDetails != null) {
+            return Stack(
                   children: [
                     Align(
                       alignment: Alignment.topRight,
@@ -37,10 +37,11 @@ class _MoveDetailSheetState extends State<MoveDetailSheet> {
                         padding: const EdgeInsets.fromLTRB(8.0, 8, 18, 8),
                         child: SvgPicture.asset(
                           "assets/pokemon_type_icons/" +
-                              moveDetails.type.name.capitalizeFirst +
+                              (moveDetails != null ?
+                              moveDetails!.type.name.capitalizeFirst : "") +
                               ".svg",
                           color: pokemonTypeMap[
-                              moveDetails.type.name.capitalizeFirst],
+                              moveDetails?.type.name.capitalizeFirst],
                           placeholderBuilder: (context) =>
                               Image.asset('assets/poke_ball.png'),
                           width: 90,
@@ -49,12 +50,13 @@ class _MoveDetailSheetState extends State<MoveDetailSheet> {
                     ),
                     Container(
                       margin: const EdgeInsets.only(left: 30, right: 10),
-                      child: Column(
+                      child: moveDetails != null ? Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const SizedBox(height: 20),
                           Text(
-                            moveDetails.name.capitalizeFirst
+                            (moveDetails != null ?
+                            moveDetails!.name.capitalizeFirst : "")
                                 .replaceAll('-', " "),
                             style: AppTextStyle.extraLargeBold.copyWith(
                               color: Color(0xFFe94a41),
@@ -62,19 +64,19 @@ class _MoveDetailSheetState extends State<MoveDetailSheet> {
                           ),
                           const SizedBox(height: 25),
                           buildAboutInformation(
-                              "Type", moveDetails.type.name.capitalizeFirst),
+                              "Type", moveDetails!.type.name.capitalizeFirst),
                           const SizedBox(height: 5),
                           buildAboutInformation(
-                              "Accuracy", moveDetails.accuracy.nullCheck),
+                              "Accuracy", moveDetails!.accuracy.nullCheck),
                           const SizedBox(height: 5),
                           buildAboutInformation(
-                              "PP", moveDetails.pp.toString()),
+                              "PP", moveDetails!.pp.toString()),
                           const SizedBox(height: 5),
                           buildAboutInformation(
-                              "Power", moveDetails.power.nullCheck),
+                              "Power", moveDetails!.power.nullCheck),
                           const SizedBox(height: 5),
                           buildAboutInformation(
-                              "Priority", moveDetails.priority.nullCheck),
+                              "Priority", moveDetails!.priority.nullCheck),
                           const SizedBox(height: 15),
                           Text(
                             "Other Information",
@@ -82,34 +84,36 @@ class _MoveDetailSheetState extends State<MoveDetailSheet> {
                           ),
                           const SizedBox(height: 15),
                           buildAboutInformation("Contest Type",
-                              moveDetails.contestType.name.capitalizeFirst),
+                              moveDetails!.contestType.name.capitalizeFirst),
                           const SizedBox(height: 5),
                           buildAboutInformation("Damage class",
-                              moveDetails.damageClass.name.capitalizeFirst),
+                              moveDetails!.damageClass.name.capitalizeFirst),
                           const SizedBox(height: 5),
                           buildAboutInformation("Flinch chance",
-                              moveDetails.meta.flinchChance.nullCheck),
+                              moveDetails!.meta.flinchChance.nullCheck),
                           const SizedBox(height: 5),
                           buildAboutInformation(
-                              "Healing", moveDetails.meta.healing.nullCheck),
+                              "Healing", moveDetails!.meta.healing.nullCheck),
                           const SizedBox(height: 5),
                           buildAboutInformation("Stat chance",
-                              moveDetails.meta.statChance.nullCheck),
+                              moveDetails!.meta.statChance.nullCheck),
                           const SizedBox(height: 5),
                           buildAboutInformation("Crit rate ",
-                              moveDetails.meta.critRate.nullCheck),
+                              moveDetails!.meta.critRate.nullCheck),
                         ],
-                      ),
+                      ) : Column(),
                     ),
                   ],
-                )
-              : Padding(
+                );
+          } else {
+            return Padding(
                   padding: const EdgeInsets.only(top: 18.0, bottom: 18.0),
                   child: Image(
                     image: AppImages.loadingGif,
                     height: 140,
                   ),
                 );
+          }
         });
   }
 

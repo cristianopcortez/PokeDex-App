@@ -1,20 +1,35 @@
 class MovesList {
-  int count;
-  String next;
-  String previous;
-  List<Results> results;
+  late int count;
+  late String? next;
+  late String? previous;
+  late List<Results> results;
 
-  MovesList({this.count, this.next, this.previous, this.results});
+  MovesList({required this.count, required this.next, required this.previous, required this.results});
 
   MovesList.fromJson(Map<String, dynamic> json) {
-    count = json['count'];
-    next = json['next'];
-    previous = json['previous'];
-    if (json['results'] != null) {
-      results = <Results>[];
-      json['results'].forEach((v) {
-        results.add(new Results.fromJson(v));
-      });
+    try {
+      count = json['count'];
+      next = json['next'];
+      previous = json['previous'] ?? ''; // Default to an empty string if null
+      if (json['results'] != null) {
+        results = <Results>[];
+        json['results'].forEach((v) {
+          results.add(new Results.fromJson(v));
+        });
+      }
+    } catch (error) {
+      // Handle the parse error here
+      print("Error parsing MovesList: $error");
+      print("Error type: ${error.runtimeType}");
+      if (error.runtimeType == FormatException) {
+        print("Invalid format: $error");
+      }
+      // else if (error.runtimeType == DioError) {
+      //   print("Dio error: ${error.response?.statusCode}");
+      // }
+      else {
+        print("Unexpected error: $error");
+      }
     }
   }
 
@@ -31,10 +46,10 @@ class MovesList {
 }
 
 class Results {
-  String name;
-  String url;
+  late String name;
+  late String url;
 
-  Results({this.name, this.url});
+  Results({required this.name, required this.url});
 
   Results.fromJson(Map<String, dynamic> json) {
     name = json['name'];

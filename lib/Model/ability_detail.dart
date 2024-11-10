@@ -3,7 +3,7 @@ class AbilityDetail {
   final int id;
   final bool isMainSeries;
   final String name;
-  final List<Pokemon> pokemon;
+  final List<PokemonJson> pokemon;
 
   AbilityDetail({
     this.effectEntries = const [],
@@ -15,7 +15,7 @@ class AbilityDetail {
 
   factory AbilityDetail.fromJson(Map<String, dynamic> json) {
     final effectEntries = <EffectEntries>[];
-    final pokemon = <Pokemon>[];
+    final pokemon = <PokemonJson>[];
 
     if (json['effect_entries'] != null) {
       json['effect_entries'].forEach((v) {
@@ -25,7 +25,7 @@ class AbilityDetail {
 
     if (json['pokemon'] != null) {
       json['pokemon'].forEach((v) {
-        pokemon.add(new Pokemon.fromJson(v));
+        pokemon.add(new PokemonJson.fromJson(v));
       });
     }
     return AbilityDetail(
@@ -54,17 +54,17 @@ class AbilityDetail {
 }
 
 class EffectEntries {
-  String effect;
-  Language language;
-  String shortEffect;
+  late String effect;
+  late Language language;
+  late String shortEffect;
 
-  EffectEntries({this.effect, this.language, this.shortEffect});
+  EffectEntries({required this.effect, required this.language, required this.shortEffect});
 
   EffectEntries.fromJson(Map<String, dynamic> json) {
     effect = json['effect'];
-    language = json['language'] != null
+    language = (json['language'] != null
         ? new Language.fromJson(json['language'])
-        : null;
+        : null)!;
     shortEffect = json['short_effect'];
   }
 
@@ -80,10 +80,10 @@ class EffectEntries {
 }
 
 class Language {
-  String name;
-  String url;
+  late String name;
+  late String url;
 
-  Language({this.name, this.url});
+  Language({required this.name, required this.url});
 
   Language.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -98,14 +98,14 @@ class Language {
   }
 }
 
-class Pokemon {
-  Language pokemon;
+class PokemonJson {
+  late Language pokemon;
 
-  Pokemon({this.pokemon});
+  PokemonJson({required this.pokemon});
 
-  Pokemon.fromJson(Map<String, dynamic> json) {
+  PokemonJson.fromJson(Map<String, dynamic> json) {
     pokemon =
-        json['pokemon'] != null ? new Language.fromJson(json['pokemon']) : null;
+        (json['pokemon'] != null ? new Language.fromJson(json['pokemon']) : null)!;
   }
 
   Map<String, dynamic> toJson() {

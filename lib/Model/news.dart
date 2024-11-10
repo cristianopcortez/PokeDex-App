@@ -1,9 +1,9 @@
 class News {
-  String status;
-  int totalResults;
-  List<Articles> articles;
+  late String status;
+  late int totalResults;
+  late List<Articles> articles;
 
-  News({this.status, this.totalResults, this.articles});
+  News({required this.status, required this.totalResults, required this.articles});
 
   News.fromJson(Map<String, dynamic> json) {
     status = json['status'];
@@ -28,28 +28,28 @@ class News {
 }
 
 class Articles {
-  Source source;
-  String author;
-  String title;
-  String description;
-  String url;
-  String urlToImage;
-  String publishedAt;
-  String content;
+  late Source source;
+  late String author;
+  late String title;
+  late String description;
+  late String url;
+  late String urlToImage;
+  late String publishedAt;
+  late String content;
 
   Articles(
-      {this.source,
-      this.author,
-      this.title,
-      this.description,
-      this.url,
-      this.urlToImage,
-      this.publishedAt,
-      this.content});
+      {required this.source,
+      required this.author,
+      required this.title,
+      required this.description,
+      required this.url,
+      required this.urlToImage,
+      required this.publishedAt,
+      required this.content});
 
   Articles.fromJson(Map<String, dynamic> json) {
     source =
-        json['source'] != null ? new Source.fromJson(json['source']) : null;
+        (json['source'] != null ? new Source.fromJson(json['source']) : null)!;
     author = json['author'];
     title = json['title'];
     description = json['description'];
@@ -76,10 +76,10 @@ class Articles {
 }
 
 class Source {
-  String id;
-  String name;
+  late String id;
+  late String name;
 
-  Source({this.id, this.name});
+  Source({required this.id, required this.name});
 
   Source.fromJson(Map<String, dynamic> json) {
     id = json['id'];

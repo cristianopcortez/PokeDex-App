@@ -4,13 +4,13 @@ class ResponsiveHelper {
   double fontSize;
   double titleFontSize;
 
-  static ResponsiveHelper _instance;
+  static ResponsiveHelper? _instance;
 
   factory ResponsiveHelper({
-    double width,
-    double height,
-    double fontSize,
-    double titleFontSize,
+    required double width,
+    required double height,
+    required double fontSize,
+    required double titleFontSize,
   }) {
     _instance ??= ResponsiveHelper._internal(
       width,
@@ -18,7 +18,7 @@ class ResponsiveHelper {
       fontSize,
       titleFontSize,
     );
-    return _instance;
+    return _instance!;
   }
 
   ResponsiveHelper._internal(
@@ -29,6 +29,9 @@ class ResponsiveHelper {
   );
 
   static ResponsiveHelper get instance {
-    return _instance;
+    if (_instance == null) {
+      throw Exception('Instance not initialized');
+    }
+    return _instance!;
   }
 }

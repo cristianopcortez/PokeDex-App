@@ -9,7 +9,7 @@ import 'package:my_pokedex/Model/pokemonAPI.dart';
 import 'package:my_pokedex/models/type.dart';
 
 class APIHelper {
-  static Dio dio;
+  static late Dio dio;
   static final APIHelper apiHelper = APIHelper._internal();
 
   factory APIHelper() {
@@ -20,7 +20,7 @@ class APIHelper {
   APIHelper._internal();
 
   Future<News> getNews() async {
-    News news;
+    late News news;
 
     await dio
         .get("https://newsapi.org/v2/everything?q=pokemon&from=" +
@@ -44,7 +44,7 @@ class APIHelper {
   }
 
   Future<PokemonAPI> getPokemon(String index) async {
-    PokemonAPI pokemonAPI;
+    late PokemonAPI pokemonAPI;
 
     await dio
         .get("https://pokeapi.co/api/v2/pokemon/" + index)
@@ -63,11 +63,14 @@ class APIHelper {
   }
 
   Future<MovesList> getMoves(String index) async {
-    MovesList pokemonAPI;
+    late MovesList pokemonAPI;
     // print("https://pokeapi.co/api/v2/machine/" + index);
+    print("url: " + index);
 
     await dio.get(index).then((receivedResponse) {
       Response response = receivedResponse;
+      // print("response : " + response.toString());
+      print("response statusCode : " + response.statusCode.toString());
       if (response.statusCode == 200) {
         pokemonAPI = MovesList.fromJson(response.data);
       } else {
@@ -75,13 +78,14 @@ class APIHelper {
       }
     }).catchError((onError) {
       print("Error : " + onError.toString());
+      onError.printError();
       return null;
     });
     return pokemonAPI;
   }
 
   Future<MoveDetail> getMoveDetail(String url) async {
-    MoveDetail moveDetail;
+    late MoveDetail moveDetail;
 
     await dio.get(url).then((receivedResponse) {
       Response response = receivedResponse;
@@ -98,7 +102,7 @@ class APIHelper {
   }
 
   Future<AbilityDetail> getAbilityDetail(String url) async {
-    AbilityDetail abilityDetail;
+    late AbilityDetail abilityDetail;
 
     await dio.get(url).then((receivedResponse) {
       Response response = receivedResponse;
@@ -115,10 +119,11 @@ class APIHelper {
   }
 
   Future<ItemDetail> geitemDetail(String url) async {
-    ItemDetail itemDetail;
+    late ItemDetail itemDetail;
 
     await dio.get(url).then((receivedResponse) {
       Response response = receivedResponse;
+      print("geitemDetail response statusCode : " + response.statusCode.toString());
       if (response.statusCode == 200) {
         itemDetail = ItemDetail.fromJson(response.data);
       } else {
@@ -132,10 +137,13 @@ class APIHelper {
   }
 
   Future<TypeDetail> getTypeDetail(String url) async {
-    TypeDetail typeDetail;
+    late TypeDetail typeDetail;
+
+    print("apihelper getTypeDetail url : " + url);
 
     await dio.get(url).then((receivedResponse) {
       Response response = receivedResponse;
+      print("getTypeDetail response statusCode : " + response.statusCode.toString());
       if (response.statusCode == 200) {
         typeDetail = TypeDetail.fromJson(response.data);
       } else {

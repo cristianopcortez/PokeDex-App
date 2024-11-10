@@ -1,37 +1,37 @@
 class MoveDetail {
-  int accuracy;
-  ContestType contestType;
-  ContestType damageClass;
-  int id;
-  List<LearnedByPokemon> learnedByPokemon;
-  Meta meta;
-  String name;
-  int power;
-  int pp;
-  int priority;
-  ContestType type;
+  late int accuracy;
+  late ContestType contestType;
+  late ContestType damageClass;
+  late int id;
+  late List<LearnedByPokemon> learnedByPokemon;
+  late Meta meta;
+  late String name;
+  late int power;
+  late int pp;
+  late int priority;
+  late ContestType type;
 
   MoveDetail(
-      {this.accuracy,
-      this.contestType,
-      this.damageClass,
-      this.id,
-      this.learnedByPokemon,
-      this.meta,
-      this.name,
-      this.power,
-      this.pp,
-      this.priority,
-      this.type});
+      {required this.accuracy,
+      required this.contestType,
+      required this.damageClass,
+      required this.id,
+      required this.learnedByPokemon,
+      required this.meta,
+      required this.name,
+      required this.power,
+      required this.pp,
+      required this.priority,
+      required this.type});
 
   MoveDetail.fromJson(Map<String, dynamic> json) {
     accuracy = json['accuracy'];
-    contestType = json['contest_type'] != null
+    contestType = (json['contest_type'] != null
         ? new ContestType.fromJson(json['contest_type'])
-        : null;
-    damageClass = json['damage_class'] != null
+        : null)!;
+    damageClass = (json['damage_class'] != null
         ? new ContestType.fromJson(json['damage_class'])
-        : null;
+        : null)!;
     id = json['id'];
     if (json['learned_by_pokemon'] != null) {
       learnedByPokemon = <LearnedByPokemon>[];
@@ -39,12 +39,12 @@ class MoveDetail {
         learnedByPokemon.add(new LearnedByPokemon.fromJson(v));
       });
     }
-    meta = json['meta'] != null ? new Meta.fromJson(json['meta']) : null;
+    meta = (json['meta'] != null ? new Meta.fromJson(json['meta']) : null)!;
     name = json['name'];
     power = json['power'];
     pp = json['pp'];
     priority = json['priority'];
-    type = json['type'] != null ? new ContestType.fromJson(json['type']) : null;
+    type = (json['type'] != null ? new ContestType.fromJson(json['type']) : null)!;
   }
 
   Map<String, dynamic> toJson() {
@@ -76,9 +76,9 @@ class MoveDetail {
 }
 
 class ContestType {
-  String name;
+  late String name;
 
-  ContestType({this.name});
+  ContestType({required this.name});
 
   ContestType.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -92,10 +92,10 @@ class ContestType {
 }
 
 class LearnedByPokemon {
-  String name;
-  String url;
+  late String name;
+  late String url;
 
-  LearnedByPokemon({this.name, this.url});
+  LearnedByPokemon({required this.name, required this.url});
 
   LearnedByPokemon.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -111,20 +111,20 @@ class LearnedByPokemon {
 }
 
 class Meta {
-  int ailmentChance;
-  int critRate;
-  int drain;
-  int flinchChance;
-  int healing;
-  int statChance;
+  late int ailmentChance;
+  late int critRate;
+  late int drain;
+  late int flinchChance;
+  late int healing;
+  late int statChance;
 
   Meta(
-      {this.ailmentChance,
-      this.critRate,
-      this.drain,
-      this.flinchChance,
-      this.healing,
-      this.statChance});
+      {required this.ailmentChance,
+      required this.critRate,
+      required this.drain,
+      required this.flinchChance,
+      required this.healing,
+      required this.statChance});
 
   Meta.fromJson(Map<String, dynamic> json) {
     ailmentChance = json['ailment_chance'];

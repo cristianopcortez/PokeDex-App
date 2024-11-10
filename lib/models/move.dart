@@ -2,7 +2,7 @@ class Move {
 	String name;
 	String url;
 
-	Move({this.name, this.url});
+	Move({required this.name, required this.url});
 
 	factory Move.fromJson(Map<String, dynamic> json) {
 		return Move(

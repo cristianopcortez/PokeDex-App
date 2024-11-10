@@ -3,9 +3,10 @@ import 'package:my_pokedex/Helpers/api_helper.dart';
 import 'package:my_pokedex/Model/pokemonAPI.dart';
 
 class PokemonController extends GetxController {
-  PokemonAPI pokemonAPI;
+  PokemonAPI? pokemonAPI;
+
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
   }
 

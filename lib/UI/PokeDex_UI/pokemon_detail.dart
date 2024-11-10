@@ -14,7 +14,7 @@ import 'package:my_pokedex/utitliy/constants.dart';
 
 class PokemonDetail extends StatefulWidget {
   final Pokemon pokemon;
-  PokemonDetail({this.pokemon});
+  PokemonDetail({required this.pokemon});
 
   @override
   _PokemonDetailState createState() => _PokemonDetailState();
@@ -22,8 +22,8 @@ class PokemonDetail extends StatefulWidget {
 
 class _PokemonDetailState extends State<PokemonDetail>
     with TickerProviderStateMixin {
-  TabController _tabController;
-  AnimationController animationController;
+  late TabController _tabController;
+  late AnimationController animationController;
   PokemonController pokemonController = Get.put(PokemonController());
 
   @override
@@ -82,7 +82,7 @@ class _PokemonDetailState extends State<PokemonDetail>
                         Navigator.pop(context);
                       },
                       icon: Icon(
-                        LineIcons.arrow_left,
+                        LineIcons.alternateLongArrowLeft,
                         color: Colors.white,
                       ),
                       iconSize: 30,

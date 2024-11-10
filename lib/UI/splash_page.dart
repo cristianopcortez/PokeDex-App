@@ -28,7 +28,12 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    ResponsiveHelper();
+    ResponsiveHelper(
+        width: Get.width,
+        height: Get.height,
+        fontSize: Get.width > 300 ? 18 : 16,
+        titleFontSize: Get.width > 300 ? 22 : 20
+    );
     ResponsiveHelper.instance.width = Get.width;
     ResponsiveHelper.instance.height = Get.height;
     ResponsiveHelper.instance.fontSize = Get.width > 300 ? 18 : 16;

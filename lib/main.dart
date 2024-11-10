@@ -4,10 +4,11 @@ import 'package:get/get.dart';
 import 'package:my_pokedex/routes/app_pages.dart';
 import 'package:my_pokedex/routes/routes.dart';
 import 'package:my_pokedex/utitliy/constants.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-  runApp(MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

@@ -1,22 +1,22 @@
 class PokemonAPI {
-  int baseExperience;
-  int height;
-  int id;
-  List<Moves> moves;
-  String name;
-  List<Stats> stats;
-  List<Types> types;
-  int weight;
+  late int baseExperience;
+  late int height;
+  late int id;
+  late List<Moves> moves;
+  late String name;
+  late List<Stats> stats;
+  late List<Types> types;
+  late int weight;
 
   PokemonAPI(
-      {this.baseExperience,
-      this.height,
-      this.id,
-      this.moves,
-      this.name,
-      this.stats,
-      this.types,
-      this.weight});
+      {required this.baseExperience,
+      required this.height,
+      required this.id,
+      required this.moves,
+      required this.name,
+      required this.stats,
+      required this.types,
+      required this.weight});
 
   PokemonAPI.fromJson(Map<String, dynamic> json) {
     baseExperience = json['base_experience'];
@@ -65,13 +65,13 @@ class PokemonAPI {
 }
 
 class Moves {
-  Move move;
-  List<VersionGroupDetails> versionGroupDetails;
+  late Move move;
+  late List<VersionGroupDetails> versionGroupDetails;
 
-  Moves({this.move, this.versionGroupDetails});
+  Moves({required this.move, required this.versionGroupDetails});
 
   Moves.fromJson(Map<String, dynamic> json) {
-    move = json['move'] != null ? new Move.fromJson(json['move']) : null;
+    move = (json['move'] != null ? new Move.fromJson(json['move']) : null)!;
     if (json['version_group_details'] != null) {
       versionGroupDetails = <VersionGroupDetails>[];
       json['version_group_details'].forEach((v) {
@@ -94,9 +94,9 @@ class Moves {
 }
 
 class Move {
-  String name;
+  late String name;
 
-  Move({this.name});
+  Move({required this.name});
 
   Move.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -110,21 +110,21 @@ class Move {
 }
 
 class VersionGroupDetails {
-  int levelLearnedAt;
-  Move moveLearnMethod;
-  Move versionGroup;
+  late int levelLearnedAt;
+  late Move moveLearnMethod;
+  late Move versionGroup;
 
   VersionGroupDetails(
-      {this.levelLearnedAt, this.moveLearnMethod, this.versionGroup});
+      {required this.levelLearnedAt, required this.moveLearnMethod, required this.versionGroup});
 
   VersionGroupDetails.fromJson(Map<String, dynamic> json) {
     levelLearnedAt = json['level_learned_at'];
-    moveLearnMethod = json['move_learn_method'] != null
+    moveLearnMethod = (json['move_learn_method'] != null
         ? new Move.fromJson(json['move_learn_method'])
-        : null;
-    versionGroup = json['version_group'] != null
+        : null)!;
+    versionGroup = (json['version_group'] != null
         ? new Move.fromJson(json['version_group'])
-        : null;
+        : null)!;
   }
 
   Map<String, dynamic> toJson() {
@@ -141,14 +141,14 @@ class VersionGroupDetails {
 }
 
 class Stats {
-  int baseStat;
-  Move stat;
+  late int baseStat;
+  late Move stat;
 
-  Stats({this.baseStat, this.stat});
+  Stats({required this.baseStat, required this.stat});
 
   Stats.fromJson(Map<String, dynamic> json) {
     baseStat = json['base_stat'];
-    stat = json['stat'] != null ? new Move.fromJson(json['stat']) : null;
+    stat = (json['stat'] != null ? new Move.fromJson(json['stat']) : null)!;
   }
 
   Map<String, dynamic> toJson() {
@@ -162,14 +162,14 @@ class Stats {
 }
 
 class Types {
-  int slot;
-  Type type;
+  late int slot;
+  late Type type;
 
-  Types({this.slot, this.type});
+  Types({required this.slot, required this.type});
 
   Types.fromJson(Map<String, dynamic> json) {
     slot = json['slot'];
-    type = json['type'] != null ? new Type.fromJson(json['type']) : null;
+    type = (json['type'] != null ? new Type.fromJson(json['type']) : null)!;
   }
 
   Map<String, dynamic> toJson() {
@@ -183,9 +183,9 @@ class Types {
 }
 
 class Type {
-  String name;
+  late String name;
 
-  Type({this.name});
+  Type({required this.name});
 
   Type.fromJson(Map<String, dynamic> json) {
     name = json['name'];

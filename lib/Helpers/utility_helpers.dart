@@ -6,6 +6,12 @@ extension StringUtils on String {
       this[0].toUpperCase() + this.substring(1).toLowerCase();
 }
 
+extension GetStringUtils on String {
+  String get capitalizeFirstGet =>
+      this[0].toUpperCase() + this.substring(1).toLowerCase();
+}
+
+
 extension Intutils on int {
   String get nullCheck => this != null ? this.toString() : "N/A";
 }
