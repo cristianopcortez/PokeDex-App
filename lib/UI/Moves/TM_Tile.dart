@@ -4,10 +4,10 @@ import 'package:my_pokedex/Helpers/text_styles.dart';
 import 'package:my_pokedex/Model/MovesList.dart';
 import 'package:my_pokedex/UI/Abilities/ability_detail.dart';
 import 'package:my_pokedex/UI/Items/Item_detail_sheet.dart';
-import 'package:my_pokedex/UI/Moves/move_detail.dart';
 import 'package:my_pokedex/Helpers/utility_helpers.dart';
 import 'package:my_pokedex/utitliy/constants.dart';
 import '../Types/type_details_riverpod.dart';
+import 'move_using_mobx.dart';
 
 class TMTile extends StatefulWidget {
   final Results moves;
@@ -41,7 +41,9 @@ class _TMTileState extends State<TMTile> {
             builder: (context) {
               switch (widget.type) {
                 case 0:
-                  return MoveDetailSheet(url: widget.moves.url);
+                  return MoveUsingMobX(url: widget.moves.url);
+                  // return MoveDetailPage(url: widget.moves.url);
+                  // return MoveDetailSheet(url: widget.moves.url);
                   break;
 
                 case 1:

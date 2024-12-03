@@ -1,12 +1,12 @@
 class MoveDetail {
-  late int accuracy;
-  late ContestType contestType;
-  late ContestType damageClass;
+  late int? accuracy;
+  late ContestType? contestType;
+  late ContestType? damageClass;
   late int id;
-  late List<LearnedByPokemon> learnedByPokemon;
-  late Meta meta;
+  late List<LearnedByPokemon>? learnedByPokemon;
+  late Meta? meta;
   late String name;
-  late int power;
+  late int? power;
   late int pp;
   late int priority;
   late ContestType type;
@@ -36,7 +36,7 @@ class MoveDetail {
     if (json['learned_by_pokemon'] != null) {
       learnedByPokemon = <LearnedByPokemon>[];
       json['learned_by_pokemon'].forEach((v) {
-        learnedByPokemon.add(new LearnedByPokemon.fromJson(v));
+        learnedByPokemon?.add(new LearnedByPokemon.fromJson(v));
       });
     }
     meta = (json['meta'] != null ? new Meta.fromJson(json['meta']) : null)!;
@@ -51,18 +51,18 @@ class MoveDetail {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['accuracy'] = this.accuracy;
     if (this.contestType != null) {
-      data['contest_type'] = this.contestType.toJson();
+      data['contest_type'] = this.contestType?.toJson();
     }
     if (this.damageClass != null) {
-      data['damage_class'] = this.damageClass.toJson();
+      data['damage_class'] = this.damageClass?.toJson();
     }
     data['id'] = this.id;
     if (this.learnedByPokemon != null) {
       data['learned_by_pokemon'] =
-          this.learnedByPokemon.map((v) => v.toJson()).toList();
+          this.learnedByPokemon?.map((v) => v.toJson()).toList();
     }
     if (this.meta != null) {
-      data['meta'] = this.meta.toJson();
+      data['meta'] = this.meta?.toJson();
     }
     data['name'] = this.name;
     data['power'] = this.power;

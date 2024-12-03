@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:my_pokedex/Helpers/api_helper.dart';
 import 'package:my_pokedex/Helpers/responsive_helper.dart';
 import 'package:my_pokedex/Helpers/text_styles.dart';
 import 'package:my_pokedex/Helpers/utility_helpers.dart';
@@ -141,11 +140,5 @@ class _TypeDetailsSheetState extends State<TypeDetailsSheet> {
         ),
       ],
     );
-  }
-
-  void gettypeDetails() async {
-    typeDetail = await APIHelper().getTypeDetail(widget.url);
-
-    setState(() {});
   }
 }

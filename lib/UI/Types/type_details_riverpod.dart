@@ -92,6 +92,7 @@ class __ContentState extends ConsumerState<_Content> {
           future: typeDetailFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
+              print("--------- ConnectionState.waiting");
               // Show a loading widget while waiting for the async operation
               return Padding(
                 padding: const EdgeInsets.only(top: 18.0, bottom: 18.0),
@@ -101,6 +102,7 @@ class __ContentState extends ConsumerState<_Content> {
                 ),
               );
             } else if (snapshot.hasError) {
+              print("--------- snapshot.hasError");
               // Show an error widget if the async operation failed
               return DefaultWidget();
             } else if (snapshot.hasData) {
@@ -125,7 +127,6 @@ class __ContentState extends ConsumerState<_Content> {
                         title: "Double Damage\nFrom : ",
                         list: typeDetail.damageRelations.doubleDamageFrom,
                       ),
-                      // (Continue adding the other widgets here as in your original code)
                     ],
                   ),
                 ),
@@ -220,6 +221,7 @@ class DefaultWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("--------- build DefaultWidget");
     return
       Padding(
         padding: const EdgeInsets.only(top: 18.0, bottom: 18.0),

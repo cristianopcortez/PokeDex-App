@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:my_pokedex/Helpers/api_helper.dart';
@@ -19,6 +20,7 @@ class ListPage extends StatefulWidget {
 class _ListPageState extends State<ListPage> {
   PagingController<String, Results> _pagingController =
       PagingController(firstPageKey: "widget.url");
+  final apiService = GetIt.instance.get<APIHelper>();
 
   @override
   void initState() {
@@ -39,7 +41,7 @@ class _ListPageState extends State<ListPage> {
     print("_fetchPage: " + pageUrl);
     try {
       print(pageUrl);
-      final newItems = await APIHelper().getMoves(pageUrl);
+      final newItems = await apiService.getMoves(pageUrl);
       if (newItems.next == null) {
         _pagingController.appendLastPage(newItems.results);
       } else {
